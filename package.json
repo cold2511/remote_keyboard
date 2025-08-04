@@ -2,6 +2,16 @@
   "dependencies": {
     "express": "^5.1.0",
     "robotjs": "^0.6.0",
-    "ws": "^8.18.2"
-  }
+    "ws": "^8.18.3"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "keyboard",
+  "version": "1.0.0",
+  "main": "server.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
