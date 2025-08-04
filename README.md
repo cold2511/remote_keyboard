@@ -1,84 +1,113 @@
-# Remote Keyboard
+🔡 Remote Keyboard Emulator
 
-A simple web-based remote keyboard that lets you send key presses from your phone to your PC using WebSockets.
+A mobile-responsive web app that turns your phone into a wireless keyboard for your PC using WebSockets and robotjs.
 
-## 🚀 Features
+This can be useful for:
+- Typing from a distance.
+- Turning any mobile device into a keyboard.
+- Fun DIY projects and automation!
 
-- Send key presses from your phone or other devices
-- Modifier keys: Shift, Ctrl, Alt
-- Directional controls: Up, Down, Left, Right
-- Special keys: Apostrophe, Question Mark, Semicolon, Square Brackets, Plus, Hyphen, etc.
-- Designed for maximum usability on mobile devices
+----------------------------------------
+🚀 How to Run
 
-## 🛠️ Tech Stack
+1. Start the Static File Server (for frontend)
+This serves your keyboard UI:
 
-- **Frontend**: HTML, CSS, JavaScript
-- **Backend**: Node.js, WebSocket (`ws` library)
-- **Server**: `http-server` or any static file server
-- **Tunnel**: [Ngrok](https://ngrok.com/) for remote access
+    npx http-server -p 8080
 
-## 📦 How to Run
+This serves your index.html at: http://localhost:8080
 
-1. **Start the server:**
+2. Start the WebSocket Server (for backend)
+This handles key events and simulates real keystrokes on your PC:
 
-```bash
-npx http-server -p 8080
-Start the WebSocket server:
+    node server.js
 
-bash
-Copy
-Edit
-node server.js
+----------------------------------------
+📶 Using on Same Wi-Fi (Without ngrok)
 
-Start the static file server:
+If your phone and PC are on the same Wi-Fi, follow these steps:
 
-bash
-Copy
-Edit
-http-server -p 8080
-Start the WebSocket server:
+1. Run the WebSocket server on your PC:
 
-bash
-Copy
-Edit
-node server.js
-(Optional) Expose your local server with ngrok (for mobile access):
+    node server.js
 
-bash
-Copy
-Edit
-ngrok http 8080
-Use the HTTPS link provided by ngrok on your phone to access the keyboard interface.
+2. Find your system's local IP address:
+   - Run this in Command Prompt:
+   
+        ipconfig
 
+   - Look for your IPv4 address (e.g., 192.168.1.5)
+
+3. On your phone’s browser, go to:
+
+    http://<your-ip-address>:3000
+
+    Example:
+    http://192.168.1.5:3000
+
+4. Enter the password (check server.js for the correct one):
+
+    const PASSWORD = "mySecret123";  // example line in server.js
+   (NOTE:You can also change the password on server.js initially it is in line no.11 const PASSWORD="mySecret123";  to anything u want) 
+
+6. GOLAAA! 🎉 You’ll now see the keyboard UI.
+   Tap keys on your phone — the keystrokes will appear on your PC instantly!
+
+----------------------------------------
+🌐 (Optional) Expose to Mobile via ngrok
+
+If your phone is not on the same Wi-Fi or you want HTTPS access:
+
+    ngrok http 8080
+
+Use the HTTPS URL provided by ngrok on your mobile browser.
+
+Note: Make sure to use wss:// in the frontend if accessing over HTTPS.
+
+----------------------------------------
 📱 Mobile Optimization
-The UI is responsive and styled to occupy maximum screen area on mobile.
 
-Large buttons for easy key tapping.
+- Large buttons for easy tapping
+- Responsive layout for all screen sizes
+- Supports:
+  - Modifier keys (Shift, Ctrl, Alt)
+  - Navigation keys (Enter, Backspace, Arrows)
+  - Extended ASCII input
 
-📂 Project Structure
-pgsql
-Copy
-Edit
+----------------------------------------
+📁 Project Structure
+
 remote-keyboard/
-├── index.html
-├── style.css
-├── script.js
-├── server.js
-└── README.md
+├── index.html      - Frontend interface
+├── style.css       - UI styling
+├── script.js       - Handles key presses + WebSocket
+├── server.js       - Node.js WebSocket + robotjs backend
+└── README.txt      - This file
+
+----------------------------------------
+⚙️ Technologies Used
+
+- Node.js + WebSocket (backend)
+- robotjs for simulating keystrokes
+- http-server for static file hosting
+- HTML, CSS, JavaScript (frontend)
+- ngrok (optional) for exposing localhost
+
+----------------------------------------
 🧠 Notes
-Make sure your phone and PC are on the same Wi-Fi network (unless using ngrok).
 
-When accessing over HTTPS (like via ngrok), make sure your WebSocket also uses wss://.
+- Both devices must be on the same network (if not using ngrok).
+- WebSocket must match the protocol (use wss:// for HTTPS).
+- Avoid exposing this app publicly without authentication.
 
+----------------------------------------
 📃 License
+
 This project is licensed under the MIT License.
+Feel free to use and modify it as you like.
 
-yaml
-Copy
-Edit
+----------------------------------------
+🙌 Credits
 
----
-
----
-
-Let me know if you want this added to a `README.md` file directly or published to a GitHub repo.
+Built with ❤️ by cold2511
+GitHub: https://github.com/cold2511
